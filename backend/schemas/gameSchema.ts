@@ -59,4 +59,5 @@ const GameSchema = new Schema({
     timestamps: true
 });
 
-export default new Model('games', GameSchema);
+
+export default GameSchema;

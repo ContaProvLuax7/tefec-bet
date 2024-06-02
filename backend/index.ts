@@ -20,10 +20,6 @@ app.listen(process.env.port, () => {
     FindRoutesInDir(__dirname + "/routes",app)
     
 })
-app.post("/abc", (req,res,next )=> {
-
-})
-
 
 function FindRoutesInDir(Path : string, app : any  ) : void{
     console.log("Searching routes in " + Path)
