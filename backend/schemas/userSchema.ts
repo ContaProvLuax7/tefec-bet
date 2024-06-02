@@ -1,4 +1,4 @@
-import { Schema, Model } from "mongoose";
+import mongoose, { Schema, Model } from "mongoose";
 
 // Define the schema for a User
 const UserSchema = new Schema({
@@ -7,6 +7,15 @@ const UserSchema = new Schema({
         required: true,
         unique: true,
         trim: true
+    },
+    email:{
+        type:String,
+        required:true,
+        unique:true
+    },
+    password:{
+        type:String,
+        required:true
     },
     balance: {
         type: Number,
@@ -76,9 +85,13 @@ const UserSchema = new Schema({
                 default: true
             }
         }
+    },
+    IsAdmin:{
+        type:Boolean,
+        default:false,
     }
 }, {
     timestamps: true
 });
 
-export default new Model('users', UserSchema);
+export default UserSchema;

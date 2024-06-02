@@ -12,7 +12,7 @@ const GameSchema = new Schema({
             required: true,
             trim: true
         },
-        teams: [{
+        teams: [{   
             type: String,
             required: true,
             trim: true
@@ -59,4 +59,5 @@ const GameSchema = new Schema({
     timestamps: true
 });
 
-export default new Model('games', GameSchema);
+
+export default GameSchema;
