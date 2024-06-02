@@ -1,5 +1,5 @@
 import Route from "../../types/route";
-import UserSchema from "../../schemas/userSchema";
+import UserModel from "../../schemas/userSchema";
 import mongoose, { Cursor } from 'mongoose'
 import crypto from 'crypto';
 
@@ -10,7 +10,6 @@ export default {
         //Username,password,email,email confirm
         if(req.body.username && req.body.password && req.body.email && req.body.emailConfirm)
         {
-            const UserModel = mongoose.model('users', UserSchema);
             try{    
                 if(req.body.password.length < 8){
                     throw new Error("Password has to contain at least 8 letters")

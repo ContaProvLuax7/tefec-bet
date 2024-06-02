@@ -1,4 +1,4 @@
-import mongoose, { Schema, Model } from "mongoose";
+import mongoose, { Schema } from "mongoose";
 
 // Define the schema for a User
 const UserSchema = new Schema({
@@ -8,14 +8,16 @@ const UserSchema = new Schema({
         unique: true,
         trim: true
     },
-    email:{
-        type:String,
-        required:true,
-        unique:true
+    email: {
+        type: String,
+        required: true,
+        unique: true,
+        trim: true,
+        match: [/^\S+@\S+\.\S+$/, 'Please use a valid email address.']
     },
-    password:{
-        type:String,
-        required:true
+    password: {
+        type: String,
+        required: true
     },
     balance: {
         type: Number,
@@ -39,22 +41,9 @@ const UserSchema = new Schema({
             default: Date.now
         }
     }],
-    bettedGames: [{
-        gameId: {
-            type: Schema.Types.ObjectId,
-            ref: 'Game',
-            required: true
-        },
-        selectedTeam: {
-            type: String,
-            required: true,
-            enum: ['team1', 'team2', 'draw']
-        },
-        amount: {
-            type: Number,
-            required: true,
-            min: 1
-        }
+    bets: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Bet'
     }],
     options: {
         emailNotifications: {
@@ -85,13 +74,9 @@ const UserSchema = new Schema({
                 default: true
             }
         }
-    },
-    IsAdmin:{
-        type:Boolean,
-        default:false,
     }
 }, {
     timestamps: true
 });
 
-export default UserSchema;
+export default mongoose.model('user',UserSchema);

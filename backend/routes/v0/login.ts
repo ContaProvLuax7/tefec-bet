@@ -1,4 +1,4 @@
-import UserSchema from "../../schemas/userSchema";
+import Model from "../../schemas/userSchema";
 import Route from "../../types/route";
 import mongoose from "mongoose";
 import {scryptSync, timingSafeEqual,createHash} from 'crypto'
@@ -12,7 +12,6 @@ export default {
     async Callback(req, res, next) {
         if(req.body.password && (req.body.email || req.body.username))
         {
-            const Model = mongoose.model('users',UserSchema)
             let Query = Model.findOne()
             const result = await Query.or([{email:req.body.email},{username:req.body.username}])
 
